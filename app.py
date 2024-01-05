@@ -16,11 +16,15 @@ if hist_button: # al hacer clic en el botón
             st.plotly_chart(fig, use_container_width=True) 
 
 
-import streamlit as st
+#import streamlit as st
 
 # crear una casilla de verificación
-build_histogram = st.checkbox('Construir un histograma')
+build_histogram = st.checkbox('Construir un scatter')
 
 if build_histogram: # si la casilla de verificación está seleccionada
-    st.write('Construir un histograma para la columna odómetro')
-        #... 
+            st.write('Construir un scatter para la columna odómetro')
+            # crear un scatter
+            fig = px.scatter(car_data, x="odometer", y="price") # crear un gráfico de dispersión
+        
+            # mostrar un gráfico Plotly interactivo
+            st.plotly_chart(fig, use_container_width=True) 
