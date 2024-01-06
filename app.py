@@ -1,12 +1,12 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
-import time
+#import time
         
 car_data = pd.read_csv('vehicles_us.csv') # leer los datos
 
-progress_bar = st.sidebar.progress(0)
-status_text = st.sidebar.empty()
+#progress_bar = st.sidebar.progress(0)
+#status_text = st.sidebar.empty()
 
 hist_button = st.button('Construir histograma') # crear un botón
         
@@ -21,7 +21,7 @@ if hist_button: # al hacer clic en el botón
             st.plotly_chart(fig, use_container_width=True) 
             time.sleep(0.05)
 
-progress_bar.empty()
+#progress_bar.empty()
 
 #import streamlit as st
 
