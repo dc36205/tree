@@ -31,27 +31,14 @@ are shown through graphs like histogram and scatter plot.
 
 def histogram():
     st.write('Histogram')                 
-    fig = px.histogra(df, x="price")        
+    #fig = px.histogra(df, x="price")     
+    fig = px.histogram(df, x="cylinders", y="price", color="type", marginal="rug", hover_data=df.columns)   
     st.plotly_chart(fig, use_container_width=True)
-
-
-#if hist_button: 
-            #st.write('Histogram')                 
-            #fig = px.histogra, x="price")        
-            #st.plotly_chart(fig, use_container_width=True)             
-
 
 def scatter():
             st.write('Scatter type vs price')
             fig = px.scatter(df, x="type", y="price")         
             st.plotly_chart(fig, use_container_width=True) 
-
-#build_histogram = st.checkbox('Building scatter')
-
-#if build_histogram: 
-            #st.write('Scatter type vs price')
-            #fig = px.scatter(df, x="type", y="price")         
-            #st.plotly_chart(fig, use_container_width=True) 
 
 st.sidebar.header('Settings')
 
