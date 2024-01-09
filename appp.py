@@ -26,7 +26,7 @@ def plot():
     st.header('Charts')
     st.pyplot(plt)
 
-st.title("Hellou, this is a demo app for Data Exploration")
+st.title("Demo app for Data Exploration")
 
 st.sidebar.header('Settings')
 

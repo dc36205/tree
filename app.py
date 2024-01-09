@@ -7,7 +7,7 @@ import plotly.express as px
 df = pd.read_csv('vehicles_us.csv') 
 #df_car_data = pd.read_csv('https://practicum-content.s3.us-west-1.amazonaws.com/datasets/vehicles_us.csv') 
 
-st.title('Sales car dataset')
+st.title('Sales car project')
 st.write(("A summary information"))
 
 # Some sort of cleaning task over the dataset
@@ -27,34 +27,39 @@ base on the
 3. Apply distance formula across all airports other than the input
 4. Return sorted list of airports Distance
 '''
-
 # Section-4 Functionalities
 
-selected_x_var = st.selectbox('What do want the x variable to be?',  ['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g']) 
+#selected_x_var = st.selectbox('What do want the x variable to be?',  ['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g']) 
 
-hist_button = st.button('Building histogram')        
+#hist_button = st.button('Building histogram')        
 
-if hist_button: 
-            # escribir un mensaje
-            st.write('Histogram')     
-            
-            fig = px.histogra, x="price")
-        
-            # mostrar un gráfico Plotly interactivo
-            st.plotly_chart(fig, use_container_width=True)             
+def histogram():
+    st.write('Histogram')                 
+    fig = px.histogra, x="price")        
+    st.plotly_chart(fig, use_container_width=True)
 
-#progress_bar.empty()
 
-# crear una casilla de verificación para el scatter
-build_histogram = st.checkbox('Building scatter')
+#if hist_button: 
+            #st.write('Histogram')                 
+            #fig = px.histogra, x="price")        
+            #st.plotly_chart(fig, use_container_width=True)             
 
-if build_histogram: 
+
+def scatter():
             st.write('Scatter type vs price')
-            # For the scatter
             fig = px.scatter(df, x="type", y="price")         
-            # Interactive chart with Plotly
             st.plotly_chart(fig, use_container_width=True) 
 
+#build_histogram = st.checkbox('Building scatter')
 
-#selected_x_var = st.selectbox('What do want the x variable to be?', 
- # ['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g']) 
+#if build_histogram: 
+            #st.write('Scatter type vs price')
+            #fig = px.scatter(df, x="type", y="price")         
+            #st.plotly_chart(fig, use_container_width=True) 
+
+st.sidebar.header('Settings')
+
+actions = {'Histogram': histogram, 'Plot': scatter}
+choices = st.sidebar.multiselect('Choose task:', ['Histogram', 'Plot'])
+for choice in choices:
+    result = actions[choice]()
