@@ -1,40 +1,36 @@
 
-#De-prueba
-
 import streamlit as st
-st.title("Hellou")
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 
-from os.path import dirname
-from os.path import join
-import setuptools
+def f1(t):
+    return np.exp(-t) * np.cos(2*np.pi*t)
 
+def f2(t):
+    return np.cos(2*np.pi*t)
+t = np.arange(0.0, 5.0, 0.1)
 
-def readme() -> str:
-    """Utility function to read the README file.
-    Used for the long_description.  It's nice, because now 1) we have a top
-    level README file and 2) it's easier to type in the README file than to put
-    a raw string in below.
-    :return: content of README.md
-    """
-    return open(join(dirname(__file__), "README.md")).read()
+def table():
+    st.header('Tables')
+    c1, c2 = st.columns(2)
+    c1.write(pd.DataFrame([x for x in zip(t,f1(t))]))
+    c2.write(pd.DataFrame([x for x in zip(t,f2(t))]))
 
+def plot():
+    plt.figure()
+    plt.subplot(2, 1, 1) # nrows, ncols, index
+    plt.plot(t, f1(t), 'bo', t, f1(t), 'k')
+    plt.subplot(212)
+    plt.plot(t, f2(t), 'r--')
+    st.header('Charts')
+    st.pyplot(plt)
 
-setuptools.setup(
-    name="streamlit-echarts",
-    version="0.5.0",
-    author="Fanilo ANDRIANASOLO",
-    author_email="andfanilo@gmail.com",
-    description="Echarts custom component for Streamlit",
-    long_description=readme(),
-    long_description_content_type="text/markdown",
-    url="https://github.com/andfanilo/streamlit-echarts",
-    packages=setuptools.find_packages(),
-    include_package_data=True,
-    classifiers=[],
-    python_requires=">=3.6",
-    install_requires=[
-        "streamlit >= 0.63",
-        "simplejson >= 3.0",
-        "pyecharts >= 1.9",
-    ]
-)
+st.title("Hellou, this is a demo app for Data Exploration")
+
+st.sidebar.header('Settings')
+
+actions = {'Tabulate': table, 'Plot': plot}
+choices = st.sidebar.multiselect('Choose task:', ['Tabulate', 'Plot'])
+for choice in choices:
+    result = actions[choice]()
