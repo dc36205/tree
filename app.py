@@ -35,7 +35,7 @@ base on the
 
 def histogram():
     st.write('Histogram')                 
-    fig = px.histogra, x="price")        
+    fig = px.histogra(df, x="price")        
     st.plotly_chart(fig, use_container_width=True)
 
 
