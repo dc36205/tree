@@ -19,13 +19,9 @@ st.write(("A summary information"))
 df[df['model_year'].isna() == True].count()
 df.drop(['is_4wd', 'paint_color'] , axis=1)
 '''
-The first task is cleaning the data, second present some of the main features of the date 
-base on the     
-
-1. Load Data
-2. Implement Distance Algorithm
-3. Apply distance formula across all airports other than the input
-4. Return sorted list of airports Distance
+The dataset Sales Car contains information about features of an amount of cars,
+that ascending up to 51524 cars. In a simple project some key features 
+are shown through graphs like histogram and scatter plot.
 '''
 # Section-4 Functionalities
 
